@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Hamid Hasanli — animated ads made entirely in code (script, AI voice-over, motion, render) and small AI tools. Baku, Azerbaijan.">
+<meta property="og:title" content="Hamid Hasanli">
+<meta property="og:description" content="Animated ads made entirely in code, plus small AI tools.">
+<meta property="og:image" content="media/pasha-belgrade.jpg">
+<meta name="theme-color" content="#eceef1">
+<title>Hamid Hasanli</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Onest:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: an edit timeline — hero with a proportional clip track, then each clip opened as a case, then tools, CV, contact. */
+:root {
+  --bg: #eceef1;
+  --surface: #ffffff;
+  --ink: #111318;
+  --muted: #59606d;
+  --line: #d3d8e0;
+  --accent: #2f3bff;
+  --accent-ink: #ffffff;
+  --frame: #0f1115;
+  --c-pasha: #f39a1e;
+  --c-kontakt: #e3173c;
+  --c-kontakt2: #ff5a3d;
+  --c-kabrita: #3d9be0;
+  --display: 'Unbounded', 'Arial Black', system-ui, sans-serif;
+  --body: 'Onest', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  --radius: 18px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d0f13; --surface: #161920; --ink: #eceef2; --muted: #969eab; --line: #272c35;
+    --accent: #8a93ff; --accent-ink: #0d0f13; --frame: #000000; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d0f13; --surface: #161920; --ink: #eceef2; --muted: #969eab; --line: #272c35;
+  --accent: #8a93ff; --accent-ink: #0d0f13; --frame: #000000; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 400 17px/1.6 var(--body);
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: clamp(16px, 4vw, 40px); }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; letter-spacing: -0.02em; }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+.mono { font-family: var(--mono); font-size: 13px; letter-spacing: 0.02em; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+
+/* language switch */
+html[data-lang="az"] [lang="en"], html:not([data-lang="az"]) [lang="az"] { display: none !important; }
+
+/* top bar */
+.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; }
+.brand { font-family: var(--display); font-weight: 700; font-size: 15px; text-decoration: none; letter-spacing: -0.01em; }
+.nav { display: flex; align-items: center; gap: 22px; }
+.nav a.l { text-decoration: none; color: var(--muted); font-size: 15px; }
+.nav a.l:hover { color: var(--ink); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; background: var(--surface); }
+.seg button {
+  font: 500 12px var(--mono); letter-spacing: 0.06em; border: 0; background: none; color: var(--muted);
+  padding: 6px 11px; border-radius: 999px; cursor: pointer;
+}
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+@media (max-width: 720px) { .nav a.l { display: none; } }
+
+/* hero */
+.hero { padding-block: clamp(48px, 9vw, 110px) 40px; }
+.hero h1 { font-size: clamp(44px, 9.4vw, 128px); font-weight: 800; line-height: 0.94; letter-spacing: -0.045em; }
+.hero h1 .ln2 { color: var(--accent); }
+.hero .lede { margin-top: 28px; max-width: 40ch; font-size: clamp(18px, 2.1vw, 23px); line-height: 1.45; }
+.hero .meta { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px 20px; color: var(--muted); }
+
+/* timeline */
+.tl { margin-top: 56px; }
+.tl-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 12px; }
+.ruler { position: relative; height: 22px; border-bottom: 1px solid var(--line); }
+.ruler span { position: absolute; bottom: 4px; transform: translateX(-50%); font: 400 11px var(--mono); color: var(--muted); white-space: nowrap; }
+.ruler span::after { content: ""; position: absolute; left: 50%; top: 18px; width: 1px; height: 6px; background: var(--line); }
+.ruler span:first-child { transform: none; }
+.ruler span:first-child::after { left: 0; }
+.track { display: flex; gap: 3px; margin-top: 8px; }
+.clip {
+  position: relative; height: 74px; border-radius: 10px; overflow: hidden; text-decoration: none;
+  display: flex; align-items: flex-end; padding: 8px 10px; min-width: 0;
+  color: #fff; background: var(--c); isolation: isolate;
+  transition: transform .2s ease, filter .2s ease;
+}
+.clip img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .38; mix-blend-mode: luminosity; z-index: -1; }
+.clip b { font: 500 11px/1.2 var(--mono); letter-spacing: .03em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: 0 1px 6px rgba(0,0,0,.35); }
+.clip:hover { transform: translateY(-3px); filter: saturate(1.15); }
+.playhead { position: relative; height: 0; }
+@media (max-width: 560px) { .clip { height: 56px; } .clip b { display: none; } .ruler span.minor { display: none; } }
+
+/* sections */
+section.block { padding-block: clamp(64px, 9vw, 120px) 0; }
+.sec-head { display: flex; justify-content: space-between; align-items: end; gap: 20px; flex-wrap: wrap; margin-bottom: 40px; border-bottom: 1px solid var(--line); padding-bottom: 18px; }
+.sec-head h2 { font-size: clamp(28px, 4.2vw, 48px); font-weight: 700; }
+.sec-head p { color: var(--muted); max-width: 46ch; }
+
+/* work cases */
+.cases { display: grid; gap: clamp(56px, 8vw, 96px); }
+.case { display: grid; grid-template-columns: minmax(0, 360px) minmax(0, 1fr); gap: clamp(24px, 5vw, 64px); align-items: start; scroll-margin-top: 80px; }
+.case.wide { grid-template-columns: minmax(0, 1fr); }
+.case.wide .info { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px 48px; }
+.case.wide .info .desc-col { grid-column: 1; }
+.case.wide .info .side-col { grid-column: 2; }
+@media (max-width: 860px) {
+  .case { grid-template-columns: minmax(0, 1fr); }
+  .case:not(.wide) .player { max-width: 380px; }
+  .case.wide .info { grid-template-columns: minmax(0, 1fr); }
+  .case.wide .info .side-col { grid-column: 1; }
+}
+.player {
+  position: relative; border-radius: var(--radius); overflow: hidden; background: var(--frame);
+  box-shadow: 0 1px 0 var(--line), 0 24px 60px -24px rgba(10, 14, 30, .45);
+  width: 100%; max-width: 100%;
+}
+.player.v { aspect-ratio: 9 / 16; }
+.player.h { aspect-ratio: 16 / 9; }
+.player video { display: block; width: 100%; height: 100%; object-fit: cover; background: var(--frame); }
+.player .tc {
+  position: absolute; left: 12px; top: 12px; padding: 4px 8px; border-radius: 6px;
+  background: rgba(0,0,0,.55); color: #fff; font: 500 12px var(--mono); font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
+.player .snd {
+  position: absolute; right: 12px; bottom: 12px; display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 14px; border: 0; border-radius: 999px; cursor: pointer;
+  background: rgba(255,255,255,.92); color: #111; font: 600 13px var(--body);
+}
+.player .snd svg { width: 16px; height: 16px; }
+.player .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(255,255,255,.18); }
+.player .bar i { display: block; height: 100%; width: 0; background: var(--c); }
+
+.info .tag { display: inline-flex; align-items: center; gap: 8px; }
+.info .tag::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--c); }
+.info h3 { font-size: clamp(24px, 3vw, 34px); font-weight: 700; margin-top: 14px; line-height: 1.1; }
+.info .desc { margin-top: 14px; color: var(--ink); max-width: 56ch; }
+.specs { margin-top: 22px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--surface); }
+.specs div { padding: 10px 14px; border-left: 1px solid var(--line); min-width: 0; }
+.specs div:first-child { border-left: 0; }
+.specs dt { font: 400 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.specs dd { margin: 2px 0 0; font: 500 15px var(--mono); font-variant-numeric: tabular-nums; }
+.did { margin: 22px 0 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.did li { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 14px; padding-top: 10px; border-top: 1px solid var(--line); }
+.did li > span:not(:last-child) { font: 500 12px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); padding-top: 3px; }
+.stack { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 6px; }
+.stack span { font: 500 12px var(--mono); padding: 5px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
+
+/* tools */
+.tools { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 16px; }
+.tool { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.tool h3 { font-size: 19px; font-weight: 700; line-height: 1.2; }
+.tool p { color: var(--muted); font-size: 16px; }
+.tool .stack { margin-top: auto; padding-top: 6px; }
+.tool .ico { width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent); }
+.tool .ico svg { width: 22px; height: 22px; }
+
+/* process */
+.steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border-top: 2px solid var(--ink); }
+.steps li { list-style: none; padding: 18px 20px 0 0; min-width: 0; }
+.steps .n { font: 500 12px var(--mono); color: var(--accent); }
+.steps h3 { font-size: 18px; margin-top: 8px; }
+.steps p { color: var(--muted); font-size: 15.5px; margin-top: 8px; }
+.steps { padding: 0; margin: 0; }
+@media (max-width: 860px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 24px; } }
+@media (max-width: 480px) { .steps { grid-template-columns: minmax(0, 1fr); } }
+
+/* cv */
+.cv { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px 64px; }
+@media (max-width: 860px) { .cv { grid-template-columns: minmax(0, 1fr); } }
+.cv h3 { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+.entry { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 16px; padding-block: 16px; border-bottom: 1px solid var(--line); }
+.entry .when { font: 400 13px var(--mono); color: var(--muted); padding-top: 3px; font-variant-numeric: tabular-nums; }
+.entry b { font-weight: 600; display: block; }
+.entry p { color: var(--muted); font-size: 15.5px; margin-top: 2px; }
+.pills { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 16px; }
+.pills > span { padding: 7px 13px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); font-size: 15px; }
+
+/* contact */
+.contact { margin-block: clamp(72px, 10vw, 130px) 48px; background: var(--ink); color: var(--bg); border-radius: 28px; padding: clamp(28px, 6vw, 64px); }
+.contact h2 { font-size: clamp(32px, 6vw, 72px); font-weight: 800; line-height: 1; letter-spacing: -0.04em; }
+.contact p { margin-top: 16px; max-width: 46ch; opacity: .75; }
+.rows { margin-top: 36px; display: grid; gap: 10px; }
+.row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; padding: 16px 0; border-top: 1px solid color-mix(in srgb, var(--bg) 22%, transparent); }
+.row .k { font: 500 12px var(--mono); letter-spacing: .14em; text-transform: uppercase; opacity: .6; width: 90px; }
+.row .v { font-family: var(--display); font-weight: 500; font-size: clamp(17px, 2.6vw, 28px); user-select: all; flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }
+.copy { border: 1px solid color-mix(in srgb, var(--bg) 35%, transparent); background: none; color: inherit; border-radius: 999px; padding: 8px 16px; font: 500 13px var(--mono); cursor: pointer; }
+.copy:hover { background: color-mix(in srgb, var(--bg) 12%, transparent); }
+footer { padding-block: 0 40px; color: var(--muted); font-size: 14px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">Hamid Hasanli</a>
+    <nav class="nav" aria-label="Sections">
+      <a class="l" href="#cv">CV</a>
+      <a class="l" href="#work"><span lang="en">Work</span><span lang="az">İşlər</span></a>
+      <a class="l" href="#tools"><span lang="en">Tools</span><span lang="az">Alətlər</span></a>
+      <a class="l" href="#contact"><span lang="en">Contact</span><span lang="az">Əlaqə</span></a>
+      <div class="seg" role="group" aria-label="Language">
+        <button type="button" id="lang-en" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" id="lang-az" data-lang="az" aria-pressed="false">AZ</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap">
+    <section class="hero">
+      <p class="eyebrow"><span lang="en">AI content &amp; automation · Baku</span><span lang="az">AI kontent və avtomatlaşdırma · Bakı</span></p>
+      <h1 style="margin-top:18px">Hamid<br><span class="ln2">Hasanli</span></h1>
+      <p class="lede">
+        <span lang="en">I make animated ads entirely in code, from the script and voice-over to the final MP4. I also build small AI tools that remove routine work.</span>
+        <span lang="az">Animasiyalı reklamları tam kodla hazırlayıram: ssenaridən və səsləndirmədən son MP4-ə qədər. Rutin işi aradan qaldıran kiçik AI alətləri də qururam.</span>
+      </p>
+      <div class="meta mono">
+        <span>Claude · Claude Code</span><span>ElevenLabs</span><span>GSAP · SVG · Canvas</span><span>Playwright · FFmpeg</span>
+      </div>
+
+      <div class="tl" aria-label="Showreel timeline">
+        <div class="tl-head">
+          <span class="eyebrow"><span lang="en">Showreel · 4 clips</span><span lang="az">Şouril · 4 klip</span></span>
+          <span class="mono" style="color:var(--muted)">02:33:00</span>
+        </div>
+        <div class="ruler" id="ruler"></div>
+        <div class="track" id="track"></div>
+      </div>
+    </section>
+
+    <section class="block" id="cv">
+      <div class="sec-head">
+        <h2>CV</h2>
+        <p><span lang="en">Information security student who ships AI-built content and tools.</span><span lang="az">AI ilə kontent və alətlər hazırlayan informasiya təhlükəsizliyi tələbəsi.</span></p>
+      </div>
+      <div class="cv">
+        <div>
+          <h3><span lang="en">Education</span><span lang="az">Təhsil</span></h3>
+          <div class="entry"><span class="when">2022–2026</span><div><b><span lang="en">Azerbaijan State Oil and Industry University</span><span lang="az">Azərbaycan Dövlət Neft və Sənaye Universiteti</span></b><p><span lang="en">Bachelor of Information Security</span><span lang="az">İnformasiya təhlükəsizliyi, bakalavr</span></p></div></div>
+          <div class="entry"><span class="when"><span lang="en">Course</span><span lang="az">Kurs</span></span><div><b><span lang="en">UX/UI and Product Owner</span><span lang="az">UX/UI və Product Owner</span></b><p><span lang="en">Customer-oriented product presentation and product management.</span><span lang="az">Məhsulun müştəri yönümlü təqdimatı və məhsul idarəetməsi.</span></p></div></div>
+          <div class="entry"><span class="when"><span lang="en">Course</span><span lang="az">Kurs</span></span><div><b>Step IT</b><p><span lang="en">Configuration and security of network systems.</span><span lang="az">Şəbəkə sistemlərinin konfiqurasiyası və təhlükəsizliyi.</span></p></div></div>
+
+          <h3 style="margin-top:40px"><span lang="en">Experience</span><span lang="az">Təcrübə</span></h3>
+          <div class="entry"><span class="when">M10</span><div><b><span lang="en">Sales Representative</span><span lang="az">Satış nümayəndəsi</span></b><p><span lang="en">Worked in the M10 app sales team over several periods.</span><span lang="az">Bir neçə dövr ərzində M10 tətbiqinin satış komandasında çalışmışam.</span></p></div></div>
+          <div class="entry"><span class="when"><span lang="en">Trading</span><span lang="az">Ticarət</span></span><div><b><span lang="en">Dropshipping &amp; trading</span><span lang="az">Dropshipping və treydinq</span></b><p><span lang="en">Remote buying and selling: dropshipping, gold, silver and share certificates.</span><span lang="az">Uzaqdan alqı-satqı: dropshipping, qızıl, gümüş və səhm sertifikatları.</span></p></div></div>
+        </div>
+        <div>
+          <h3><span lang="en">Skills</span><span lang="az">Bacarıqlar</span></h3>
+          <div class="pills">
+            <span>Claude · Claude Code</span><span>Prompt engineering</span><span>MCP</span><span>ElevenLabs</span><span>FFmpeg</span><span>Node.js</span><span>HTML · SVG · Canvas</span><span>Azure Translator</span><span>Cisco <span lang="en">networking</span><span lang="az">şəbəkə</span></span><span>MS Word <span lang="en">(advanced)</span><span lang="az">(irəli)</span></span><span>Outlook <span lang="en">(advanced)</span><span lang="az">(irəli)</span></span><span>Excel</span>
+          </div>
+
+          <h3 style="margin-top:40px"><span lang="en">Languages</span><span lang="az">Dillər</span></h3>
+          <div class="entry"><span class="when"><span lang="en">Native</span><span lang="az">Ana dili</span></span><div><b><span lang="en">Azerbaijani</span><span lang="az">Azərbaycan dili</span></b></div></div>
+          <div class="entry"><span class="when">B1+</span><div><b><span lang="en">English</span><span lang="az">İngilis dili</span></b><p><span lang="en">Upper-intermediate</span><span lang="az">Orta səviyyədən yuxarı</span></p></div></div>
+
+          <h3 style="margin-top:40px"><span lang="en">Strengths</span><span lang="az">Güclü tərəflər</span></h3>
+          <div class="pills">
+            <span lang="en">Analytical thinking</span><span lang="az">Analitik düşüncə</span>
+            <span lang="en">Attention to detail</span><span lang="az">Detallara diqqət</span>
+            <span lang="en">Adapts fast</span><span lang="az">Tez uyğunlaşma</span>
+            <span lang="en">Clear communication</span><span lang="az">Aydın ünsiyyət</span>
+            <span lang="en">Initiative</span><span lang="az">Təşəbbüskarlıq</span>
+            <span lang="en">Teamwork</span><span lang="az">Komanda işi</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="work">
+      <div class="sec-head">
+        <h2><span lang="en">Selected work</span><span lang="az">Seçilmiş işlər</span></h2>
+        <p>
+          <span lang="en">Every frame below is drawn by code, not filmed or generated by a video model. Videos play muted; turn on sound for the voice-over.</span>
+          <span lang="az">Aşağıdakı hər kadr kodla çəkilib, çəkiliş və ya video modeli yoxdur. Videolar səssiz oynayır; səsləndirməni eşitmək üçün səsi açın.</span>
+        </p>
+      </div>
+
+      <div class="cases">
+
+        <!-- PASHA Travel -->
+        <article class="case" id="pasha" style="--c: var(--c-pasha)">
+          <div class="player v">
+            <video src="media/pasha-belgrade.mp4" poster="media/pasha-belgrade.jpg" muted loop playsinline preload="metadata"></video>
+            <span class="tc">00:00:00</span>
+            <button class="snd" type="button"></button>
+            <div class="bar"><i></i></div>
+          </div>
+          <div class="info">
+            <span class="tag eyebrow">PASHA Travel · <span lang="en">concept ad</span><span lang="az">konsept reklam</span></span>
+            <h3><span lang="en">Baku to Belgrade</span><span lang="az">Bakıdan Belqrada</span></h3>
+            <p class="desc">
+              <span lang="en">A 15-second tour reel. A plane draws its route across a dark map while the camera pushes into the Balkans, Belgrade bursts open, then three hotel tiers count up to their prices.</span>
+              <span lang="az">15 saniyəlik tur reklamı. Təyyarə tünd xəritə üzərində marşrutunu çəkir, kamera Balkanlara yaxınlaşır, Belqrad "partlayır", sonra üç otel kateqoriyası qiymətlərinə qədər sayılır.</span>
+            </p>
+            <dl class="specs">
+              <div><dt><span lang="en">Format</span><span lang="az">Format</span></dt><dd>1080×1920</dd></div>
+              <div><dt>FPS</dt><dd>30</dd></div>
+              <div><dt><span lang="en">Length</span><span lang="az">Müddət</span></dt><dd>0:15</dd></div>
+            </dl>
+            <ul class="did">
+              <li><span lang="en">Map</span><span lang="az">Xəritə</span><span><span lang="en">Real country shapes projected with d3-geo; the flight arc and camera move are computed per frame.</span><span lang="az">Real ölkə sərhədləri d3-geo ilə proyeksiya edilib; uçuş qövsü və kamera hərəkəti hər kadr üçün hesablanır.</span></span></li>
+              <li><span lang="en">Voice</span><span lang="az">Səs</span><span><span lang="en">Azerbaijani voice-over in five takes (ElevenLabs), timed so each icon appears on its word.</span><span lang="az">Azərbaycanca səsləndirmə 5 hissədə (ElevenLabs); hər ikon öz sözü deyiləndə çıxır.</span></span></li>
+              <li><span lang="en">Render</span><span lang="az">Render</span><span><span lang="en">450 frames captured with Playwright and encoded with FFmpeg, mixed with music and sound effects.</span><span lang="az">450 kadr Playwright ilə çəkilib, FFmpeg ilə musiqi və effektlərlə birlikdə videoya yığılıb.</span></span></li>
+            </ul>
+            <div class="stack"><span>GSAP</span><span>SVG</span><span>d3-geo</span><span>ElevenLabs</span><span>Playwright</span><span>FFmpeg</span></div>
+          </div>
+        </article>
+
+        <!-- Kontakt birthday -->
+        <article class="case" id="kontakt-birthday" style="--c: var(--c-kontakt)">
+          <div class="player v">
+            <video src="media/kontakt-birthday.mp4" poster="media/kontakt-birthday.jpg" muted loop playsinline preload="metadata"></video>
+            <span class="tc">00:00:00</span>
+            <button class="snd" type="button"></button>
+            <div class="bar"><i></i></div>
+          </div>
+          <div class="info">
+            <span class="tag eyebrow">Kontakt Home · <span lang="en">concept ad</span><span lang="az">konsept reklam</span></span>
+            <h3><span lang="en">Kontakt's birthday sale</span><span lang="az">Kontakt-ın ad günü</span></h3>
+            <p class="desc">
+              <span lang="en">A reel built on one idea: blowing out the candles. The mascot blows out the cake candles in the intro, then blows on each product's old price until it falls and the new price lands.</span>
+              <span lang="az">Bir ideya üzərində qurulub: şamları üfürmək. Maskot girişdə tortun şamlarını söndürür, sonra hər məhsulun köhnə qiymətini üfürür, qiymət düşür və yenisi gəlir.</span>
+            </p>
+            <dl class="specs">
+              <div><dt><span lang="en">Format</span><span lang="az">Format</span></dt><dd>1080×1920</dd></div>
+              <div><dt>FPS</dt><dd>30</dd></div>
+              <div><dt><span lang="en">Length</span><span lang="az">Müddət</span></dt><dd>0:21</dd></div>
+            </dl>
+            <ul class="did">
+              <li><span lang="en">Character</span><span lang="az">Personaj</span><span><span lang="en">The mascot rebuilt as an SVG rig traced from the brand image, so its arms, body and face can move.</span><span lang="az">Maskot brend şəklindən SVG skelet kimi yenidən çəkilib ki, qolları, bədəni və üzü hərəkət etsin.</span></span></li>
+              <li><span lang="en">Content</span><span lang="az">Məzmun</span><span><span lang="en">Campaign copy and product prices taken from the live campaign page (−70%, 16–18 October).</span><span lang="az">Kampaniya mətni və məhsul qiymətləri real kampaniya səhifəsindən götürülüb (−70%, 16–18 oktyabr).</span></span></li>
+              <li><span lang="en">Motion</span><span lang="az">Hərəkət</span><span><span lang="en">Brief, style guide and shot list first, then stills, critique and the final render.</span><span lang="az">Əvvəl brif, stil bələdçisi və kadr siyahısı, sonra kadr yoxlaması, tənqid və final render.</span></span></li>
+            </ul>
+            <div class="stack"><span>SVG rig</span><span>Canvas</span><span>Python audio</span><span>FFmpeg</span></div>
+          </div>
+        </article>
+
+        <!-- Kontakt campaign -->
+        <article class="case" id="kontakt-campaign" style="--c: var(--c-kontakt2)">
+          <div class="player v">
+            <video src="media/kontakt-campaign.mp4" poster="media/kontakt-campaign.jpg" muted loop playsinline preload="metadata"></video>
+            <span class="tc">00:00:00</span>
+            <button class="snd" type="button"></button>
+            <div class="bar"><i></i></div>
+          </div>
+          <div class="info">
+            <span class="tag eyebrow">Kontakt Home · <span lang="en">concept ad</span><span lang="az">konsept reklam</span></span>
+            <h3><span lang="en">The big campaign</span><span lang="az">Möhtəşəm kampaniya</span></h3>
+            <p class="desc">
+              <span lang="en">A longer campaign reel with the same mascot: an energetic opener, a product spotlight with feature callouts, and a closing offer of 18 months with no interest.</span>
+              <span lang="az">Eyni maskotla daha uzun kampaniya reklamı: enerjili giriş, xüsusiyyətləri ilə məhsul təqdimatı və sonda 18 ay faizsiz təklif.</span>
+            </p>
+            <dl class="specs">
+              <div><dt><span lang="en">Format</span><span lang="az">Format</span></dt><dd>1080×1920</dd></div>
+              <div><dt>FPS</dt><dd>30</dd></div>
+              <div><dt><span lang="en">Length</span><span lang="az">Müddət</span></dt><dd>0:43</dd></div>
+            </dl>
+            <ul class="did">
+              <li><span lang="en">Script</span><span lang="az">Ssenari</span><span><span lang="en">Hook, product section and call to action written for a vertical, sound-on feed.</span><span lang="az">Şaquli, səsli lent üçün hook, məhsul hissəsi və hərəkətə çağırış yazılıb.</span></span></li>
+              <li><span lang="en">Animation</span><span lang="az">Animasiya</span><span><span lang="en">Mascot, product cards and price badges animated in code, frame by frame.</span><span lang="az">Maskot, məhsul kartları və qiymət nişanları kodla, kadr-kadr animasiya olunub.</span></span></li>
+            </ul>
+            <div class="stack"><span>SVG</span><span>Canvas</span><span>ElevenLabs</span><span>FFmpeg</span></div>
+          </div>
+        </article>
+
+        <!-- Kabrita -->
+        <article class="case wide" id="kabrita" style="--c: var(--c-kabrita)">
+          <div class="player h">
+            <video src="media/kabrita.mp4" poster="media/kabrita.jpg" muted loop playsinline preload="metadata"></video>
+            <span class="tc">00:00:00</span>
+            <button class="snd" type="button"></button>
+            <div class="bar"><i></i></div>
+          </div>
+          <div class="info">
+            <div class="desc-col">
+              <span class="tag eyebrow">Kabrita · <span lang="en">concept explainer</span><span lang="az">konsept izah videosu</span></span>
+              <h3><span lang="en">A goat walks you through the range</span><span lang="az">Keçi məhsulları təqdim edir</span></h3>
+              <p class="desc">
+                <span lang="en">A 74-second explainer for goat-milk baby formula. A goat mascot introduces each stage of the range, with lip-sync driven by the voice-over and subtitles timed to every word.</span>
+                <span lang="az">Keçi südü əsaslı uşaq qidası üçün 74 saniyəlik izah videosu. Keçi maskot məhsulların hər mərhələsini təqdim edir; dodaq hərəkəti səsləndirməyə, altyazılar isə hər sözə uyğun vaxtlanıb.</span>
+              </p>
+              <dl class="specs">
+                <div><dt><span lang="en">Format</span><span lang="az">Format</span></dt><dd>1920×1080</dd></div>
+                <div><dt>FPS</dt><dd>30</dd></div>
+                <div><dt><span lang="en">Length</span><span lang="az">Müddət</span></dt><dd>1:14</dd></div>
+              </dl>
+            </div>
+            <div class="side-col">
+              <ul class="did">
+                <li><span lang="en">Lip-sync</span><span lang="az">Dodaq</span><span><span lang="en">Word timings pulled from ElevenLabs and turned into mouth shapes for the mascot.</span><span lang="az">Söz vaxtları ElevenLabs-dan alınıb və maskotun ağız formalarına çevrilib.</span></span></li>
+                <li><span lang="en">Scenes</span><span lang="az">Səhnələr</span><span><span lang="en">Five illustrated scenes, all drawn with SVG and canvas. No stock images or video model.</span><span lang="az">Beş illüstrasiyalı səhnə, hamısı SVG və canvas ilə çəkilib. Hazır şəkil və ya video modeli yoxdur.</span></span></li>
+                <li><span lang="en">Pipeline</span><span lang="az">Proses</span><span><span lang="en">Audio build script generates the timeline; Puppeteer captures frames; FFmpeg encodes.</span><span lang="az">Səs skripti zaman cədvəlini yaradır; Puppeteer kadrları çəkir; FFmpeg videonu yığır.</span></span></li>
+              </ul>
+              <div class="stack"><span>SVG</span><span>Canvas</span><span>ElevenLabs</span><span>Puppeteer</span><span>FFmpeg</span></div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="block" id="process">
+      <div class="sec-head">
+        <h2><span lang="en">How a reel gets made</span><span lang="az">Reklam necə hazırlanır</span></h2>
+        <p><span lang="en">The same four steps behind every video above.</span><span lang="az">Yuxarıdakı hər videonun arxasındakı eyni dörd addım.</span></p>
+      </div>
+      <ol class="steps">
+        <li><span class="n">01</span><h3><span lang="en">Brief</span><span lang="az">Brif</span></h3><p><span lang="en">Product, prices and brand assets gathered from the real campaign page and logo files.</span><span lang="az">Məhsul, qiymət və brend materialları real kampaniya səhifəsindən və loqo fayllarından toplanır.</span></p></li>
+        <li><span class="n">02</span><h3><span lang="en">Script &amp; voice</span><span lang="az">Ssenari və səs</span></h3><p><span lang="en">Second-by-second script, then Azerbaijani voice-over, music and sound effects in ElevenLabs.</span><span lang="az">Saniyə-saniyə ssenari, sonra ElevenLabs-da azərbaycanca səsləndirmə, musiqi və effektlər.</span></p></li>
+        <li><span class="n">03</span><h3><span lang="en">Code animation</span><span lang="az">Kodla animasiya</span></h3><p><span lang="en">One HTML file draws every frame from time alone, so any second can be previewed instantly.</span><span lang="az">Bir HTML faylı hər kadrı yalnız zamana görə çəkir, ona görə istənilən saniyəyə dərhal baxmaq olur.</span></p></li>
+        <li><span class="n">04</span><h3><span lang="en">Render</span><span lang="az">Render</span></h3><p><span lang="en">A headless browser captures each frame; FFmpeg encodes the MP4 with the mixed audio.</span><span lang="az">Brauzer hər kadrı çəkir; FFmpeg MP4-ü qarışdırılmış səslə birlikdə yığır.</span></p></li>
+      </ol>
+    </section>
+
+    <section class="block" id="tools">
+      <div class="sec-head">
+        <h2><span lang="en">Tools &amp; automation</span><span lang="az">Alətlər və avtomatlaşdırma</span></h2>
+        <p><span lang="en">Smaller builds that use AI to take repetitive work off people's hands.</span><span lang="az">AI ilə təkrarlanan işi insanların üzərindən götürən kiçik layihələr.</span></p>
+      </div>
+      <div class="tools">
+        <div class="tool">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M9 7h7M9 11h5"/></svg></div>
+          <h3><span lang="en">Document library</span><span lang="az">Sənəd kitabxanası</span></h3>
+          <p><span lang="en">A web app for uploading PDF and DOCX files. It extracts the text and uses the Claude API to rewrite it in simpler language.</span><span lang="az">PDF və DOCX faylları yükləmək üçün veb tətbiq. Mətni çıxarır və Claude API ilə daha sadə dilə çevirir.</span></p>
+          <div class="stack"><span>Claude API</span><span>PDF/DOCX</span><span>Web app</span></div>
+        </div>
+        <div class="tool">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg></div>
+          <h3><span lang="en">Document translator</span><span lang="az">Sənəd tərcüməçisi</span></h3>
+          <p><span lang="en">Translates whole .docx and .pdf files through the Azure Translator API.</span><span lang="az">Bütöv .docx və .pdf fayllarını Azure Translator API ilə tərcümə edir.</span></p>
+          <div class="stack"><span>Azure Translator</span><span>Node.js</span></div>
+        </div>
+        <div class="tool">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M8 13h8M8 16h5"/></svg></div>
+          <h3><span lang="en">One-click file sorter</span><span lang="az">Bir kliklə fayl sıralayıcı</span></h3>
+          <p><span lang="en">Sorts the Downloads folder into Images, PDF, Videos, Music, Documents, Archives and Programs. Shows a preview first, skips unfinished downloads, and can undo the last run.</span><span lang="az">Downloads qovluğunu Şəkillər, PDF, Videolar, Musiqi, Sənədlər, Arxivlər və Proqramlar üzrə sıralayır. Əvvəl önizləmə göstərir, yarımçıq yükləmələrə toxunmur, son sıralamanı geri qaytara bilir.</span></p>
+          <div class="stack"><span>Node.js</span><span>.bat</span><span>PowerShell</span></div>
+        </div>
+        <div class="tool">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 8V4M8 14h.01M16 14h.01M9 18h6"/></svg></div>
+          <h3><span lang="en">Custom AI agents &amp; skills</span><span lang="az">Fərdi AI agentlər və skill-lər</span></h3>
+          <p><span lang="en">Claude Code agents with their own instructions: one writes ad scripts and renders animations, another runs daily market analysis. Connected to Gmail, Google Drive, Telegram, Figma and Canva over MCP.</span><span lang="az">Öz təlimatları olan Claude Code agentləri: biri reklam ssenarisi yazır və animasiya render edir, digəri gündəlik bazar analizi aparır. MCP ilə Gmail, Google Drive, Telegram, Figma və Canva-ya qoşulub.</span></p>
+          <div class="stack"><span>Claude Code</span><span>MCP</span><span>Prompt engineering</span></div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="contact" id="contact">
+      <h2><span lang="en">Need a reel<br>or a tool?</span><span lang="az">Reklam və ya<br>alət lazımdır?</span></h2>
+      <p><span lang="en">Send the product and the deadline. I reply with a plan and a first draft.</span><span lang="az">Məhsulu və son tarixi göndərin. Plan və ilk variantla cavab verirəm.</span></p>
+      <div class="rows">
+        <div class="row"><span class="k">Email</span><span class="v" id="v-mail">hmdhesenli@gmail.com</span><button class="copy" type="button" data-copy="v-mail"><span lang="en">Copy</span><span lang="az">Kopyala</span></button></div>
+        <div class="row"><span class="k"><span lang="en">Phone</span><span lang="az">Telefon</span></span><span class="v" id="v-tel">+994 70 394 72 76</span><button class="copy" type="button" data-copy="v-tel"><span lang="en">Copy</span><span lang="az">Kopyala</span></button></div>
+        <div class="row"><span class="k"><span lang="en">Based in</span><span lang="az">Şəhər</span></span><span class="v"><span lang="en">Baku, Azerbaijan</span><span lang="az">Bakı, Azərbaycan</span></span></div>
+      </div>
+    </section>
+
+    <footer>
+      <span>© 2026 Hamid Hasanli</span>
+      <span><span lang="en">Brand work shown is self-initiated concept work.</span><span lang="az">Göstərilən brend işləri müstəqil konsept işlərdir.</span></span>
+    </footer>
+  </div>
+</main>
+
+<script>
+(() => {
+  const root = document.documentElement;
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+
+  // --- language ---
+  function setLang(l) {
+    root.dataset.lang = l;
+    root.lang = l;
+    $$('.seg button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === l)));
+    $$('.snd').forEach(paintSound);
+    try { localStorage.setItem('hh-lang', l); } catch (e) {}
+  }
+  $$('.seg button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+  let start = 'en';
+  try { start = localStorage.getItem('hh-lang') || start; } catch (e) {}
+  if (location.hash === '#az') start = 'az';
+
+  // --- timeline (real clip lengths, seconds) ---
+  const clips = [
+    { id: 'pasha', name: 'PASHA Travel', len: 15, c: 'var(--c-pasha)', img: 'media/pasha-belgrade.jpg' },
+    { id: 'kontakt-birthday', name: 'Kontakt · Birthday', len: 21, c: 'var(--c-kontakt)', img: 'media/kontakt-birthday.jpg' },
+    { id: 'kontakt-campaign', name: 'Kontakt · Campaign', len: 43, c: 'var(--c-kontakt2)', img: 'media/kontakt-campaign.jpg' },
+    { id: 'kabrita', name: 'Kabrita', len: 74, c: 'var(--c-kabrita)', img: 'media/kabrita.jpg' },
+  ];
+  const total = clips.reduce((s, c) => s + c.len, 0);
+  const fmt = s => `${Math.floor(s / 60)}:${String(Math.round(s % 60)).padStart(2, '0')}`;
+  const track = document.getElementById('track');
+  clips.forEach(c => {
+    const a = document.createElement('a');
+    a.className = 'clip'; a.href = '#' + c.id;
+    a.style.flex = `${c.len} 1 0`; a.style.setProperty('--c', c.c);
+    a.innerHTML = `<img src="${c.img}" alt=""><b>${c.name} · ${fmt(c.len)}</b>`;
+    a.setAttribute('aria-label', `${c.name}, ${fmt(c.len)}`);
+    track.appendChild(a);
+  });
+  const ruler = document.getElementById('ruler');
+  for (let t = 0; t <= total; t += 30) {
+    const s = document.createElement('span');
+    s.textContent = fmt(t);
+    if (t % 60) s.className = 'minor';
+    s.style.left = (t / total * 100) + '%';
+    ruler.appendChild(s);
+  }
+
+  // --- players ---
+  const ICON_OFF = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="m22 9-6 6M16 9l6 6"/></svg>';
+  const ICON_ON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>';
+  function paintSound(btn) {
+    const v = btn.closest('.player').querySelector('video');
+    const az = root.dataset.lang === 'az';
+    const label = v.muted ? (az ? 'Səsi aç' : 'Sound on') : (az ? 'Səsi bağla' : 'Mute');
+    btn.innerHTML = (v.muted ? ICON_OFF : ICON_ON) + `<span>${label}</span>`;
+    btn.setAttribute('aria-label', label);
+  }
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const players = $$('.player');
+  players.forEach(p => {
+    const v = p.querySelector('video');
+    const btn = p.querySelector('.snd');
+    const tc = p.querySelector('.tc');
+    const bar = p.querySelector('.bar i');
+    btn.addEventListener('click', () => {
+      const turnOn = v.muted;
+      players.forEach(o => { const ov = o.querySelector('video'); ov.muted = true; paintSound(o.querySelector('.snd')); });
+      if (turnOn) { v.muted = false; v.currentTime = 0; v.play().catch(() => {}); }
+      paintSound(btn);
+    });
+    v.addEventListener('timeupdate', () => {
+      const t = v.currentTime, f = Math.floor((t % 1) * 30);
+      tc.textContent = `00:${String(Math.floor(t / 60)).padStart(2, '0')}:${String(Math.floor(t % 60)).padStart(2, '0')}:${String(f).padStart(2, '0')}`.slice(3);
+      if (v.duration) bar.style.width = (t / v.duration * 100) + '%';
+    });
+    paintSound(btn);
+  });
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => entries.forEach(e => {
+      const v = e.target.querySelector('video');
+      if (e.isIntersecting && e.intersectionRatio >= 0.45) { if (!reduce || !v.muted) v.play().catch(() => {}); }
+      else if (!v.paused) { v.pause(); if (!v.muted) { v.muted = true; paintSound(e.target.querySelector('.snd')); } }
+    }), { threshold: [0, 0.45, 0.8] });
+    players.forEach(p => io.observe(p));
+  }
+
+  // --- copy ---
+  $$('.copy').forEach(b => b.addEventListener('click', () => {
+    const el = document.getElementById(b.dataset.copy);
+    const text = el.textContent.trim();
+    const done = () => { const o = b.innerHTML; b.textContent = root.dataset.lang === 'az' ? 'Kopyalandı' : 'Copied'; setTimeout(() => b.innerHTML = o, 1400); };
+    const fallback = () => { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+    try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+  }));
+
+  setLang(start);
+})();
+</script>
+</body>
+</html>
