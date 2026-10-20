@@ -27,6 +27,7 @@
   --c-kontakt: #e3173c;
   --c-kontakt2: #ff5a3d;
   --c-kabrita: #3d9be0;
+  --c-corek: #ee7b2c;
   --display: 'Unbounded', 'Arial Black', system-ui, sans-serif;
   --body: 'Onest', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
@@ -164,6 +165,23 @@ section.block { padding-block: clamp(64px, 9vw, 120px) 0; }
 .stack { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 6px; }
 .stack span { font: 500 12px var(--mono); padding: 5px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
 
+/* interactive pages */
+.shot {
+  display: block; border-radius: var(--radius); overflow: hidden; background: var(--frame); aspect-ratio: 16 / 10;
+  box-shadow: 0 1px 0 var(--line), 0 24px 60px -24px rgba(10, 14, 30, .45);
+  transition: transform .2s ease;
+}
+.shot:hover { transform: translateY(-3px); }
+.shot img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.links { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px; }
+.links a {
+  display: inline-flex; align-items: center; gap: 6px; padding: 10px 16px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--surface); font: 600 14px var(--body); text-decoration: none; white-space: nowrap;
+}
+.links a:hover { border-color: var(--muted); }
+.links a.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.links a.primary:hover { filter: brightness(1.08); }
+
 /* tools */
 .tools { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 16px; }
 .tool { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
@@ -216,6 +234,7 @@ footer { padding-block: 0 40px; color: var(--muted); font-size: 14px; display: f
     <nav class="nav" aria-label="Sections">
       <a class="l" href="#cv">CV</a>
       <a class="l" href="#work"><span lang="en">Work</span><span lang="az">İşlər</span></a>
+      <a class="l" href="#web"><span lang="en">Web</span><span lang="az">Veb</span></a>
       <a class="l" href="#tools"><span lang="en">Tools</span><span lang="az">Alətlər</span></a>
       <a class="l" href="#contact"><span lang="en">Contact</span><span lang="az">Əlaqə</span></a>
       <div class="seg" role="group" aria-label="Language">
@@ -432,6 +451,53 @@ footer { padding-block: 0 40px; color: var(--muted); font-size: 14px; display: f
         <li><span class="n">03</span><h3><span lang="en">Code animation</span><span lang="az">Kodla animasiya</span></h3><p><span lang="en">One HTML file draws every frame from time alone, so any second can be previewed instantly.</span><span lang="az">Bir HTML faylı hər kadrı yalnız zamana görə çəkir, ona görə istənilən saniyəyə dərhal baxmaq olur.</span></p></li>
         <li><span class="n">04</span><h3><span lang="en">Render</span><span lang="az">Render</span></h3><p><span lang="en">A headless browser captures each frame; FFmpeg encodes the MP4 with the mixed audio.</span><span lang="az">Brauzer hər kadrı çəkir; FFmpeg MP4-ü qarışdırılmış səslə birlikdə yığır.</span></p></li>
       </ol>
+    </section>
+
+    <section class="block" id="web">
+      <div class="sec-head">
+        <h2><span lang="en">Interactive pages</span><span lang="az">İnteraktiv səhifələr</span></h2>
+        <p><span lang="en">Web pages built on real content and designed for the phone first.</span><span lang="az">Real məzmun üzərində qurulan və əvvəlcə telefon üçün dizayn edilən veb səhifələr.</span></p>
+      </div>
+      <div class="cases">
+
+        <!-- Xaricdə Çörək story map -->
+        <article class="case wide" id="xerite" style="--c: var(--c-corek)">
+          <a class="shot" href="https://hemidhesenli.github.io/xaricde-corek-xerite/" target="_blank" rel="noopener">
+            <picture>
+              <source srcset="media/xaricde-corek-xerite-dark.jpg" media="(prefers-color-scheme: dark)">
+              <img src="media/xaricde-corek-xerite.jpg" width="1440" height="900" loading="lazy" alt="Çörək Xəritəsi: Bakıdan hekayəsi olan 10 ölkəyə çəkilən marşrutlar və yanında hekayə kartları">
+            </picture>
+          </a>
+          <div class="info">
+            <div class="desc-col">
+              <span class="tag eyebrow">Xaricdə Çörək · <span lang="en">concept page</span><span lang="az">konsept səhifə</span></span>
+              <h3><span lang="en">A map of stories from abroad</span><span lang="az">Xaricdəki hekayələrin xəritəsi</span></h3>
+              <p class="desc">
+                <span lang="en">A concept page for Xaricdə Çörək, an Azerbaijani study-abroad community. Tap a country to read the stories of Azerbaijani students there: university, scholarship and one key takeaway, each linked to the original post.</span>
+                <span lang="az">Xaricdə Çörək üçün konsept səhifə. Ölkəyə toxunursan, orada oxuyan azərbaycanlıların hekayələri açılır: universitet, təqaüd və əsas fikir, hər biri orijinal posta linklə.</span>
+              </p>
+              <dl class="specs">
+                <div><dt><span lang="en">Stories</span><span lang="az">Hekayə</span></dt><dd>11</dd></div>
+                <div><dt><span lang="en">Countries</span><span lang="az">Ölkə</span></dt><dd>10</dd></div>
+                <div><dt><span lang="en">Build</span><span lang="az">Quruluş</span></dt><dd>1 HTML</dd></div>
+              </dl>
+              <div class="links">
+                <a class="primary" href="https://hemidhesenli.github.io/xaricde-corek-xerite/" target="_blank" rel="noopener"><span lang="en">Open the map</span><span lang="az">Xəritəni aç</span><span aria-hidden="true">↗</span></a>
+                <a href="https://github.com/HemidHesenli/xaricde-corek-xerite" target="_blank" rel="noopener"><span lang="en">Code on GitHub</span><span lang="az">GitHub-da kod</span><span aria-hidden="true">↗</span></a>
+              </div>
+            </div>
+            <div class="side-col">
+              <ul class="did">
+                <li><span lang="en">Data</span><span lang="az">Məlumat</span><span><span lang="en">11 public Instagram stories collected with Apify and condensed to a university, a scholarship and one takeaway each.</span><span lang="az">11 açıq Instagram hekayəsi Apify ilə toplanıb; hər biri universitet, təqaüd və bir əsas fikrə qısaldılıb.</span></span></li>
+                <li><span lang="en">Map</span><span lang="az">Xəritə</span><span><span lang="en">Equal Earth projection in d3-geo. Routes are drawn out from Baku, and the map zooms to the selected country.</span><span lang="az">d3-geo ilə Equal Earth proyeksiyası. Marşrutlar Bakıdan çəkilir, xəritə seçilmiş ölkəyə yaxınlaşır.</span></span></li>
+                <li><span lang="en">Details</span><span lang="az">Detallar</span><span><span lang="en">Fonts checked for the Azerbaijani letter ə, map data checked for Azerbaijan's borders, built phone-first for an Instagram bio link.</span><span lang="az">Şriftlər ə hərfinə, xəritə Azərbaycanın sərhədlərinə görə yoxlanıb; Instagram bio linki üçün əvvəlcə telefona uyğun qurulub.</span></span></li>
+              </ul>
+              <div class="stack"><span>D3</span><span>d3-geo</span><span>TopoJSON</span><span>Apify</span><span>HTML · CSS</span></div>
+            </div>
+          </div>
+        </article>
+
+      </div>
     </section>
 
     <section class="block" id="tools">
