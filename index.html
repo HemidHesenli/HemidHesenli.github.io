@@ -27,6 +27,7 @@
   --c-kontakt: #e3173c;
   --c-kontakt2: #ff5a3d;
   --c-kabrita: #3d9be0;
+  --c-anqard: #e0b80f;
   --c-corek: #ee7b2c;
   --display: 'Unbounded', 'Arial Black', system-ui, sans-serif;
   --body: 'Onest', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -260,8 +261,8 @@ footer { padding-block: 0 40px; color: var(--muted); font-size: 14px; display: f
 
       <div class="tl" aria-label="Showreel timeline">
         <div class="tl-head">
-          <span class="eyebrow"><span lang="en">Showreel · 4 clips</span><span lang="az">Şouril · 4 klip</span></span>
-          <span class="mono" style="color:var(--muted)">02:33:00</span>
+          <span class="eyebrow"><span lang="en">Showreel · 5 clips</span><span lang="az">Şouril · 5 klip</span></span>
+          <span class="mono" style="color:var(--muted)">02:53:00</span>
         </div>
         <div class="ruler" id="ruler"></div>
         <div class="track" id="track"></div>
@@ -401,6 +402,35 @@ footer { padding-block: 0 40px; color: var(--muted); font-size: 14px; display: f
               <li><span lang="en">Animation</span><span lang="az">Animasiya</span><span><span lang="en">Mascot, product cards and price badges animated in code, frame by frame.</span><span lang="az">Maskot, məhsul kartları və qiymət nişanları kodla, kadr-kadr animasiya olunub.</span></span></li>
             </ul>
             <div class="stack"><span>SVG</span><span>Canvas</span><span>ElevenLabs</span><span>FFmpeg</span></div>
+          </div>
+        </article>
+
+        <!-- ANQARD -->
+        <article class="case" id="anqard" style="--c: var(--c-anqard)">
+          <div class="player v">
+            <video src="media/anqard-termo.mp4" poster="media/anqard-termo.jpg" muted loop playsinline preload="metadata"></video>
+            <span class="tc">00:00:00</span>
+            <button class="snd" type="button"></button>
+            <div class="bar"><i></i></div>
+          </div>
+          <div class="info">
+            <span class="tag eyebrow">ANQARD · <span lang="en">concept ad</span><span lang="az">konsept reklam</span></span>
+            <h3><span lang="en">From stone to termo aqlay</span><span lang="az">Daşdan termo aqlaya</span></h3>
+            <p class="desc">
+              <span lang="en">A 20-second reel for a maker of decorative facade elements. A map of Absheron zooms into the Old City, a stone carving opens from the pin, then a CNC gantry cuts the same pattern into foam and the details snap onto a Baku facade.</span>
+              <span lang="az">Dekorativ fasad elementləri istehsalçısı üçün 20 saniyəlik reklam. Abşeron xəritəsi İçərişəhərə yaxınlaşır, nöqtədən daş oyma açılır, sonra CNC robotu eyni naxışı penoplastda oyur və detallar Bakı binasının fasadına oturur.</span>
+            </p>
+            <dl class="specs">
+              <div><dt><span lang="en">Format</span><span lang="az">Format</span></dt><dd>1080×1920</dd></div>
+              <div><dt>FPS</dt><dd>30</dd></div>
+              <div><dt><span lang="en">Length</span><span lang="az">Müddət</span></dt><dd>0:20</dd></div>
+            </dl>
+            <ul class="did">
+              <li><span lang="en">Map</span><span lang="az">Xəritə</span><span><span lang="en">Absheron coastline projected from longitude and latitude; the camera eases between pins and each pin opens into a scene card.</span><span lang="az">Abşeron sahil xətti coğrafi koordinatlardan proyeksiya edilib; kamera nöqtələr arasında hərəkət edir, hər nöqtə səhnə kartına açılır.</span></span></li>
+              <li><span lang="en">Carving</span><span lang="az">Oyma</span><span><span lang="en">One SVG ornament rendered twice: as weathered stone and as foam that a CNC gantry reveals row by row, with deterministic chips.</span><span lang="az">Bir SVG naxış iki dəfə çəkilib: köhnə daş kimi və CNC robotunun sətir-sətir açdığı penoplast kimi.</span></span></li>
+              <li><span lang="en">Sound</span><span lang="az">Səs</span><span><span lang="en">Azerbaijani voice-over in five takes, sound effects and music from ElevenLabs, mixed in FFmpeg with the music ducking under the voice.</span><span lang="az">Azərbaycanca səsləndirmə 5 hissədə, effektlər və musiqi ElevenLabs-da; FFmpeg ilə qarışdırılıb, diktor danışanda musiqi azalır.</span></span></li>
+            </ul>
+            <div class="stack"><span>Canvas</span><span>SVG</span><span>ElevenLabs</span><span>FFmpeg</span></div>
           </div>
         </article>
 
@@ -574,6 +604,7 @@ footer { padding-block: 0 40px; color: var(--muted); font-size: 14px; display: f
     { id: 'pasha', name: 'PASHA Travel', len: 15, c: 'var(--c-pasha)', img: 'media/pasha-belgrade.jpg' },
     { id: 'kontakt-birthday', name: 'Kontakt · Birthday', len: 21, c: 'var(--c-kontakt)', img: 'media/kontakt-birthday.jpg' },
     { id: 'kontakt-campaign', name: 'Kontakt · Campaign', len: 43, c: 'var(--c-kontakt2)', img: 'media/kontakt-campaign.jpg' },
+    { id: 'anqard', name: 'ANQARD', len: 20, c: 'var(--c-anqard)', img: 'media/anqard-termo.jpg' },
     { id: 'kabrita', name: 'Kabrita', len: 74, c: 'var(--c-kabrita)', img: 'media/kabrita.jpg' },
   ];
   const total = clips.reduce((s, c) => s + c.len, 0);
