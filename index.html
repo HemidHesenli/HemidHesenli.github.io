@@ -29,6 +29,7 @@
   --c-kabrita: #3d9be0;
   --c-anqard: #e0b80f;
   --c-corek: #ee7b2c;
+  --c-travacco: #10b981;
   --display: 'Unbounded', 'Arial Black', system-ui, sans-serif;
   --body: 'Onest', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
@@ -261,8 +262,8 @@ footer { padding-block: 0 40px; color: var(--muted); font-size: 14px; display: f
 
       <div class="tl" aria-label="Showreel timeline">
         <div class="tl-head">
-          <span class="eyebrow"><span lang="en">Showreel · 5 clips</span><span lang="az">Şouril · 5 klip</span></span>
-          <span class="mono" style="color:var(--muted)">02:53:00</span>
+          <span class="eyebrow"><span lang="en">Showreel · 6 clips</span><span lang="az">Şouril · 6 klip</span></span>
+          <span class="mono" style="color:var(--muted)">03:33:00</span>
         </div>
         <div class="ruler" id="ruler"></div>
         <div class="track" id="track"></div>
@@ -318,6 +319,36 @@ footer { padding-block: 0 40px; color: var(--muted); font-size: 14px; display: f
       </div>
 
       <div class="cases">
+
+        <!-- Travacco -->
+        <article class="case" id="travacco" style="--c: var(--c-travacco)">
+          <div class="player v">
+            <video src="media/travacco-explainer.mp4" poster="media/travacco-explainer.jpg" muted loop playsinline preload="metadata"></video>
+            <span class="tc">00:00:00</span>
+            <button class="snd" type="button"></button>
+            <div class="bar"><i></i></div>
+          </div>
+          <div class="info">
+            <span class="tag eyebrow">Travacco · <span lang="en">concept explainer</span><span lang="az">konsept izah videosu</span></span>
+            <h3><span lang="en">From Excel chaos to one system</span><span lang="az">Excel xaosundan vahid sistemə</span></h3>
+            <p class="desc">
+              <span lang="en">A 40-second Reels explainer for a travel-agency ERP, made for agency owners. An 8-second hook stages the problem (a broken spreadsheet, a phone that won't stop), the chaos is swallowed by the logo, then one booking travels through the product: AI fills the sale from a pasted email, invoice, voucher and contract fly out on their words, the client pays in the portal, reminders arrive in order, and the hook's two questions flip to green answers.</span>
+              <span lang="az">Turizm agentlikləri üçün ERP sisteminə 40 saniyəlik Reels izah videosu, agentlik sahiblərinə ünvanlanıb. 8 saniyəlik hook problemi göstərir (səhvlərlə dolu Excel, dayanmayan telefon), xaos loqoya sorulur, sonra bir rezervasiya məhsulun içindən keçir: AI satışı yapışdırılan məktubdan doldurur, invoys, vauçer və müqavilə öz sözləri deyiləndə uçub çıxır, müştəri portalda ödəyir, xatırlatmalar nizamla gəlir və hook-dakı iki sual yaşıl cavaba çevrilir.</span>
+            </p>
+            <dl class="specs">
+              <div><dt><span lang="en">Format</span><span lang="az">Format</span></dt><dd>1080×1920</dd></div>
+              <div><dt>FPS</dt><dd>60</dd></div>
+              <div><dt><span lang="en">Length</span><span lang="az">Müddət</span></dt><dd>0:40</dd></div>
+            </dl>
+            <ul class="did">
+              <li><span lang="en">Purpose</span><span lang="az">Məqsəd</span><span><span lang="en">Explain how the product works and why an agency needs it, in the order the agency works: sale, documents, client, reminders. Built to be cut into one Reels per step.</span><span lang="az">Məhsulun necə işlədiyini və agentliyə niyə lazım olduğunu agentliyin iş ardıcıllığı ilə izah etmək: satış, sənədlər, müştəri, xatırlatmalar. Hər addım ayrıca Reels kimi kəsilə bilir.</span></span></li>
+              <li><span lang="en">Content</span><span lang="az">Məzmun</span><span><span lang="en">Feature claims and interface wording taken from the company's own site; the dashboard rebuilt as components from its real screens.</span><span lang="az">Funksiyalar və interfeys sözləri şirkətin öz saytından götürülüb; dashboard real ekranlarına əsasən komponent kimi yenidən qurulub.</span></span></li>
+              <li><span lang="en">Voice</span><span lang="az">Səs</span><span><span lang="en">Azerbaijani voice-over in ten lines (ElevenLabs), each checked by transcribing it back; every scene lands on its word. Music, effects and the phone sounds synthesized in Python.</span><span lang="az">Azərbaycanca səsləndirmə 10 hissədə (ElevenLabs), hər biri geri mətnə çevrilərək yoxlanıb; hər səhnə öz sözünə düşür. Musiqi, effektlər və telefon səsləri Python-da sintez olunub.</span></span></li>
+              <li><span lang="en">Render</span><span lang="az">Render</span><span><span lang="en">2,400 frames at 60 fps captured with Playwright, motion blur from subframes, encoded with FFmpeg.</span><span lang="az">60 fps-də 2 400 kadr Playwright ilə çəkilib, hərəkət bulanıqlığı ara kadrlardan, FFmpeg ilə yığılıb.</span></span></li>
+            </ul>
+            <div class="stack"><span>HTML/CSS 3D</span><span>SVG</span><span>ElevenLabs</span><span>Python audio</span><span>Playwright</span><span>FFmpeg</span></div>
+          </div>
+        </article>
 
         <!-- PASHA Travel -->
         <article class="case" id="pasha" style="--c: var(--c-pasha)">
@@ -601,6 +632,7 @@ footer { padding-block: 0 40px; color: var(--muted); font-size: 14px; display: f
 
   // --- timeline (real clip lengths, seconds) ---
   const clips = [
+    { id: 'travacco', name: 'Travacco', len: 40, c: 'var(--c-travacco)', img: 'media/travacco-explainer.jpg' },
     { id: 'pasha', name: 'PASHA Travel', len: 15, c: 'var(--c-pasha)', img: 'media/pasha-belgrade.jpg' },
     { id: 'kontakt-birthday', name: 'Kontakt · Birthday', len: 21, c: 'var(--c-kontakt)', img: 'media/kontakt-birthday.jpg' },
     { id: 'kontakt-campaign', name: 'Kontakt · Campaign', len: 43, c: 'var(--c-kontakt2)', img: 'media/kontakt-campaign.jpg' },
