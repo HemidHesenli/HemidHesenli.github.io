@@ -30,6 +30,7 @@
   --c-anqard: #e0b80f;
   --c-corek: #ee7b2c;
   --c-travacco: #10b981;
+  --c-qepik: #fd6e08;
   --display: 'Unbounded', 'Arial Black', system-ui, sans-serif;
   --body: 'Onest', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
@@ -262,8 +263,8 @@ footer { padding-block: 0 40px; color: var(--muted); font-size: 14px; display: f
 
       <div class="tl" aria-label="Showreel timeline">
         <div class="tl-head">
-          <span class="eyebrow"><span lang="en">Showreel · 6 clips</span><span lang="az">Şouril · 6 klip</span></span>
-          <span class="mono" style="color:var(--muted)">03:33:00</span>
+          <span class="eyebrow"><span lang="en">Showreel · 7 clips</span><span lang="az">Şouril · 7 klip</span></span>
+          <span class="mono" style="color:var(--muted)">03:59:00</span>
         </div>
         <div class="ruler" id="ruler"></div>
         <div class="track" id="track"></div>
@@ -319,6 +320,36 @@ footer { padding-block: 0 40px; color: var(--muted); font-size: 14px; display: f
       </div>
 
       <div class="cases">
+
+        <!-- qəpiyəqəpik -->
+        <article class="case" id="qepiyeqepik" style="--c: var(--c-qepik)">
+          <div class="player v">
+            <video src="media/qepiyeqepik-faralar.mp4" poster="media/qepiyeqepik-faralar.jpg" muted loop playsinline preload="metadata"></video>
+            <span class="tc">00:00:00</span>
+            <button class="snd" type="button"></button>
+            <div class="bar"><i></i></div>
+          </div>
+          <div class="info">
+            <span class="tag eyebrow">QƏPİYƏQƏPİK · <span lang="en">concept explainer</span><span lang="az">konsept izah animasiyası</span></span>
+            <h3><span lang="en">In the light, no hidden fee survives</span><span lang="az">İşıqda gizli ödəniş qalmır</span></h3>
+            <p class="desc">
+              <span lang="en">A 26-second explainer for a car importer that buys at US auctions and whose whole promise is transparent pricing. A light line draws the car in a dark studio, hidden fees stick to it in the dark and the total climbs from $20,000 to $22,000. Then the headlights switch on and the brand's orange light reads the car from front to back: each fee burns away, the total falls back, four shipping quotes give up the cheapest, an X-ray shows the parts arrive untouched, and the film lands on "Hidden fees: $0".</span>
+              <span lang="az">ABŞ hərraclarından avtomobil gətirən və əsas vədi şəffaf hesablama olan şirkət üçün 26 saniyəlik izah animasiyası. Qaranlıq studiyada işıq xətti maşını çəkir, qaranlıqda maşına gizli ödənişlər yapışır və yekun 20 000 $-dan 22 000 $-a qalxır. Sonra faralar yanır və brendin narıncı işığı maşını öndən arxaya oxuyur: hər ödəniş yanıb silinir, yekun geri düşür, 4 daşınma təklifindən ən ucuzu seçilir, rentgen hissələrin toxunulmadan gəldiyini göstərir və film "Gizli ödəniş: 0 $" ilə bitir.</span>
+            </p>
+            <dl class="specs">
+              <div><dt><span lang="en">Format</span><span lang="az">Format</span></dt><dd>1080×1920</dd></div>
+              <div><dt>FPS</dt><dd>60</dd></div>
+              <div><dt><span lang="en">Length</span><span lang="az">Müddət</span></dt><dd>0:26</dd></div>
+            </dl>
+            <ul class="did">
+              <li><span lang="en">Purpose</span><span lang="az">Məqsəd</span><span><span lang="en">The company's strongest message (every payment counted in front of the client, to the penny) sits at the bottom of a ten-point caption under daily auction cards. The film turns that list into one visual metaphor: light is transparency.</span><span lang="az">Şirkətin ən güclü mesajı (hər ödəniş müştərinin gözü qarşısında, qəpiyə qəpik hesablanır) gündəlik hərrac kartlarının altında, 10 bəndlik mətnin sonunda qalır. Film bu siyahını bir vizual metafora çevirir: işıq şəffaflıqdır.</span></span></li>
+              <li><span lang="en">Content</span><span lang="az">Məzmun</span><span><span lang="en">Every claim comes from the company's own "Why us?" text; the hook's numbers are marked as examples on screen. Logo and brand orange taken from the company's own materials.</span><span lang="az">Hər iddia şirkətin öz "Niyə məhz biz?" mətnindən götürülüb; hook-dakı rəqəmlərin nümunə olduğu ekranda yazılıb. Loqo və brend narıncısı şirkətin öz materiallarından götürülüb.</span></span></li>
+              <li><span lang="en">Voice</span><span lang="az">Səs</span><span><span lang="en">Azerbaijani voice-over in seven lines (ElevenLabs), the effects and score ducking under it; car, light and paper sounds synthesized in Python.</span><span lang="az">Azərbaycanca səsləndirmə 7 hissədə (ElevenLabs), effektlər və musiqi diktorun altında zəifləyir; maşın, işıq və kağız səsləri Python-da sintez olunub.</span></span></li>
+              <li><span lang="en">Render</span><span lang="az">Render</span><span><span lang="en">1,536 frames at 60 fps drawn on canvas at 2x and captured with Playwright, motion blur from subframes, encoded with FFmpeg.</span><span lang="az">60 fps-də 1 536 kadr canvas-da 2x ölçüdə çəkilib və Playwright ilə tutulub, hərəkət bulanıqlığı ara kadrlardan, FFmpeg ilə yığılıb.</span></span></li>
+            </ul>
+            <div class="stack"><span>Canvas 2D</span><span>GSAP</span><span>ElevenLabs</span><span>Python audio</span><span>Playwright</span><span>FFmpeg</span></div>
+          </div>
+        </article>
 
         <!-- Travacco -->
         <article class="case" id="travacco" style="--c: var(--c-travacco)">
@@ -632,6 +663,7 @@ footer { padding-block: 0 40px; color: var(--muted); font-size: 14px; display: f
 
   // --- timeline (real clip lengths, seconds) ---
   const clips = [
+    { id: 'qepiyeqepik', name: 'qəpiyəqəpik', len: 26, c: 'var(--c-qepik)', img: 'media/qepiyeqepik-faralar.jpg' },
     { id: 'travacco', name: 'Travacco', len: 40, c: 'var(--c-travacco)', img: 'media/travacco-explainer.jpg' },
     { id: 'pasha', name: 'PASHA Travel', len: 15, c: 'var(--c-pasha)', img: 'media/pasha-belgrade.jpg' },
     { id: 'kontakt-birthday', name: 'Kontakt · Birthday', len: 21, c: 'var(--c-kontakt)', img: 'media/kontakt-birthday.jpg' },
