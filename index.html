@@ -31,6 +31,7 @@
   --c-corek: #ee7b2c;
   --c-travacco: #10b981;
   --c-qepik: #fd6e08;
+  --c-hoffman: #c8102e;
   --display: 'Unbounded', 'Arial Black', system-ui, sans-serif;
   --body: 'Onest', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
@@ -235,8 +236,8 @@ footer { padding-block: 0 40px; color: var(--muted); font-size: 14px; display: f
   <div class="wrap">
     <a class="brand" href="#top">Hamid Hasanli</a>
     <nav class="nav" aria-label="Sections">
+      <a class="l" href="#footage"><span lang="en">Work</span><span lang="az">İşlər</span></a>
       <a class="l" href="#cv">CV</a>
-      <a class="l" href="#work"><span lang="en">Work</span><span lang="az">İşlər</span></a>
       <a class="l" href="#web"><span lang="en">Web</span><span lang="az">Veb</span></a>
       <a class="l" href="#tools"><span lang="en">Tools</span><span lang="az">Alətlər</span></a>
       <a class="l" href="#contact"><span lang="en">Contact</span><span lang="az">Əlaqə</span></a>
@@ -263,11 +264,54 @@ footer { padding-block: 0 40px; color: var(--muted); font-size: 14px; display: f
 
       <div class="tl" aria-label="Showreel timeline">
         <div class="tl-head">
-          <span class="eyebrow"><span lang="en">Showreel · 8 clips</span><span lang="az">Şouril · 8 klip</span></span>
-          <span class="mono" style="color:var(--muted)">04:21:00</span>
+          <span class="eyebrow"><span lang="en">Showreel · 9 clips</span><span lang="az">Şouril · 9 klip</span></span>
+          <span class="mono" style="color:var(--muted)">05:05:00</span>
         </div>
         <div class="ruler" id="ruler"></div>
         <div class="track" id="track"></div>
+      </div>
+    </section>
+
+    <section class="block" id="footage">
+      <div class="sec-head">
+        <h2><span lang="en">Edited from real footage</span><span lang="az">Real çəkilişdən montaj</span></h2>
+        <p>
+          <span lang="en">Unlike the animations below, this one is filmed: phone clips from a live event, cut to music and finished with graphics made in code.</span>
+          <span lang="az">Aşağıdakı animasiyalardan fərqli olaraq bu video çəkilişdir: canlı tədbirin telefon klipləri musiqiyə montaj olunub, qrafika isə kodla əlavə edilib.</span>
+        </p>
+      </div>
+      <div class="cases">
+
+        <!-- Hoffman Co -->
+        <article class="case" id="hoffman" style="--c: var(--c-hoffman)">
+          <div class="player v">
+            <video src="media/hoffman-co-vip.mp4" poster="media/hoffman-co-vip.jpg" muted loop playsinline preload="metadata"></video>
+            <span class="tc">00:00:00</span>
+            <button class="snd" type="button"></button>
+            <div class="bar"><i></i></div>
+          </div>
+          <div class="info">
+            <span class="tag eyebrow">Hoffman Co · <span lang="en">event reel</span><span lang="az">tədbir reels-i</span></span>
+            <h3><span lang="en">VIP dinner with Sinan Ergin</span><span lang="az">Sinan Ergin ilə VIP şam yeməyi</span></h3>
+            <p class="desc">
+              <span lang="en">A 44-second Reels for Hoffman Co's VIP dinner with Sinan Ergin, cut from phone footage of one evening. It opens on a guest filming the speaker, moves through the hall and the long tables, lets a line from his talk play in his own voice with captions, then passes the microphone around: 18 guests in ten seconds, one on every beat, before the group photo and the logo.</span>
+              <span lang="az">Hoffman Co-nun Sinan Ergin ilə VIP şam yeməyi üçün 44 saniyəlik Reels, bir axşamın telefon çəkilişlərindən yığılıb. Natiqi telefonla çəkən qonaqla açılır, zaldan və uzun masalardan keçir, natiqin çıxışından bir cümləni öz səsində altyazı ilə verir, sonra mikrofon əldən-ələ keçir: 10 saniyədə 18 qonaq, hər vuruşda biri, sonda qrup şəkli və loqo.</span>
+            </p>
+            <dl class="specs">
+              <div><dt><span lang="en">Format</span><span lang="az">Format</span></dt><dd>1080×1920</dd></div>
+              <div><dt>FPS</dt><dd>30</dd></div>
+              <div><dt><span lang="en">Length</span><span lang="az">Müddət</span></dt><dd>0:44</dd></div>
+            </dl>
+            <ul class="did">
+              <li><span lang="en">Selection</span><span lang="az">Seçim</span><span><span lang="en">54 clips from two phones (1080p and 4K) mapped first: sharpness, shake and the clean part of each clip measured, the shoot split into four time blocks. 34 shots, every clip used once.</span><span lang="az">İki telefondan (1080p və 4K) 54 klip əvvəlcə xəritələnib: hər klipin kəskinliyi, titrəməsi və təmiz hissəsi ölçülüb, çəkiliş dörd zaman blokuna bölünüb. 34 plan, hər klip yalnız bir dəfə.</span></span></li>
+              <li><span lang="en">Graphics</span><span lang="az">Qrafika</span><span><span lang="en">The Hc logo lands large, then docks into the corner across the first cut and stays as the bug; a photographer's flash becomes a cut. Zoom, blur, whip and light-leak transitions ported from HyperFrames, restyled in the brand red and drawn per frame on canvas.</span><span lang="az">Hc loqosu böyük gəlir, ilk kəsimdə küncə enib orada qalır; fotoqrafın flaşı kəsimə çevrilir. Zoom, blur, whip və light leak keçidləri HyperFrames-dən götürülüb, brend qırmızısına uyğunlaşdırılıb və canvas-da hər kadr üçün çəkilir.</span></span></li>
+              <li><span lang="en">Captions</span><span lang="az">Altyazı</span><span><span lang="en">The speaker's line kept in his own Turkish, captions timed from ElevenLabs Scribe word timings.</span><span lang="az">Natiqin sözü öz türkcə səsində saxlanıb, altyazılar ElevenLabs Scribe söz vaxtlarına görə qoyulub.</span></span></li>
+              <li><span lang="en">Sound</span><span lang="az">Səs</span><span><span lang="en">Cuts on a 120 BPM grid; the client's song retimed from 122 to 120 BPM without changing its pitch, the music ducks and muffles under the quote, and the room sound stays in.</span><span lang="az">Kəsimlər 120 BPM şəbəkəsi üzərindədir; müştərinin mahnısı tonu dəyişmədən 122-dən 120 BPM-ə gətirilib, sitat zamanı musiqi enib boğuqlaşır, zalın canlı səsi saxlanıb.</span></span></li>
+            </ul>
+            <div class="stack"><span>FFmpeg</span><span>Python</span><span>Canvas 2D</span><span>HyperFrames</span><span>ElevenLabs Scribe</span><span>Playwright</span></div>
+          </div>
+        </article>
+
       </div>
     </section>
 
@@ -565,7 +609,7 @@ footer { padding-block: 0 40px; color: var(--muted); font-size: 14px; display: f
     <section class="block" id="process">
       <div class="sec-head">
         <h2><span lang="en">How a reel gets made</span><span lang="az">Reklam necə hazırlanır</span></h2>
-        <p><span lang="en">The same four steps behind every video above.</span><span lang="az">Yuxarıdakı hər videonun arxasındakı eyni dörd addım.</span></p>
+        <p><span lang="en">The same four steps behind every animation above.</span><span lang="az">Yuxarıdakı hər animasiyanın arxasındakı eyni dörd addım.</span></p>
       </div>
       <ol class="steps">
         <li><span class="n">01</span><h3><span lang="en">Brief</span><span lang="az">Brif</span></h3><p><span lang="en">Product, prices and brand assets gathered from the real campaign page and logo files.</span><span lang="az">Məhsul, qiymət və brend materialları real kampaniya səhifəsindən və loqo fayllarından toplanır.</span></p></li>
@@ -668,7 +712,7 @@ footer { padding-block: 0 40px; color: var(--muted); font-size: 14px; display: f
 
     <footer>
       <span>© 2026 Hamid Hasanli</span>
-      <span><span lang="en">Brand work shown is self-initiated concept work.</span><span lang="az">Göstərilən brend işləri müstəqil konsept işlərdir.</span></span>
+      <span><span lang="en">Brand work marked as concept is self-initiated.</span><span lang="az">Konsept kimi qeyd olunan brend işləri müstəqil işlərdir.</span></span>
     </footer>
   </div>
 </main>
@@ -693,6 +737,7 @@ footer { padding-block: 0 40px; color: var(--muted); font-size: 14px; display: f
 
   // --- timeline (real clip lengths, seconds) ---
   const clips = [
+    { id: 'hoffman', name: 'Hoffman Co', len: 44, c: 'var(--c-hoffman)', img: 'media/hoffman-co-vip.jpg' },
     { id: 'auksion-baki', name: 'Auksiondan Bakıya', len: 22, c: 'var(--c-qepik)', img: 'media/qepiyeqepik-auksion-baki.jpg' },
     { id: 'qepiyeqepik', name: 'qəpiyəqəpik', len: 26, c: 'var(--c-qepik)', img: 'media/qepiyeqepik-faralar.jpg' },
     { id: 'travacco', name: 'Travacco', len: 40, c: 'var(--c-travacco)', img: 'media/travacco-explainer.jpg' },
